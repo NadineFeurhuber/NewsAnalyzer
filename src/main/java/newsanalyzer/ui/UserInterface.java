@@ -4,28 +4,82 @@ package newsanalyzer.ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 import newsanalyzer.ctrl.Controller;
+import newsapi.NewsApi;
+import newsapi.NewsApiBuilder;
+import newsapi.enums.Category;
+import newsapi.enums.Country;
+import newsapi.enums.Endpoint;
+import newsapi.enums.Language;
 
 public class UserInterface 
 {
 
 	private Controller ctrl = new Controller();
+	public static final String APIKEY = "247Nm937Fk2017m1502";
 
 	public void getDataFromCtrl1(){
-		System.out.println("ABC");
+		System.out.println("National");
+		NewsApi newsApi = new NewsApiBuilder()
+				.setApiKey(APIKEY)
+				.setQ("")
+				.setEndPoint(Endpoint.TOP_HEADLINES)
+				.setSourceCountry(Country.at)
+				.setLanguage(Language.de)
+				.setSourceCategory(Category.entertainment)
+				.createNewsApi();
 
-		ctrl.process();
+		ctrl.process(newsApi);
+	}
+
+	private void setQ(String s) {
+	}
+
+	private void setApiKey(String apikey) {
 	}
 
 	public void getDataFromCtrl2(){
+		System.out.println("Foreign Countries");
+		NewsApi newsApi = new NewsApiBuilder()
+				.setApiKey(APIKEY)
+				.setQ("")
+				.setEndPoint(Endpoint.TOP_HEADLINES)
+				.setSourceCountry(Country.gb)
+				.setLanguage(Language.en)
+				.setSourceCategory(Category.business)
+				.createNewsApi();
+
+		ctrl.process(newsApi);
 	}
 
 	public void getDataFromCtrl3(){
+		System.out.println("Science");
+		NewsApi newsApi = new NewsApiBuilder()
+				.setApiKey(APIKEY)
+				.setQ("")
+				.setEndPoint(Endpoint.TOP_HEADLINES)
+				.setSourceCountry(Country.us)
+				.setLanguage(Language.en)
+				.setSourceCategory(Category.science)
+				.createNewsApi();
+
+		ctrl.process(newsApi);
 
 	}
 	
 	public void getDataForCustomInput() {
+		System.out.println("Keyword:");
+		Scanner scan = new Scanner(System.in);
+		String key = scan.nextLine();
+		NewsApi newsApi = new NewsApiBuilder()
+				.setApiKey(APIKEY)
+				.setEndPoint(Endpoint.TOP_HEADLINES)
+				.setQ(key)
+				.createNewsApi();
+
+		ctrl.process(newsApi);
 		
 	}
 
