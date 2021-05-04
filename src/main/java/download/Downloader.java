@@ -1,3 +1,5 @@
+// https://github.com/NadineFeurhuber/NewsAnalyzer
+
 package download;
 
 import java.io.FileOutputStream;
