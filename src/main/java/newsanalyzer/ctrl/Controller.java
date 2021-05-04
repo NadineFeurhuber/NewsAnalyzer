@@ -14,22 +14,25 @@ import newsapi.beans.NewsReponse;
 import newsapi.beans.Source;
 // import newsapi.NewsException;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import javax.lang.model.element.TypeElement;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Controller {
 
 	public static final String APIKEY = "247Nm937Fk2017m1502";
+    public static List urlList;
 
-	private String keyword;
+    private String keyword;
 	private Category category;
 	private Endpoint endpoint;
 	private Language language;
 	private Country country;
 	private Exception NewsException;
+
+	public List<String> getUrl(List<Article> urlList) {
+		return urlList.stream().map(article -> article.getUrl()).collect(Collectors.toList());
+	}
 
 	private int getSizeReports(List<Article> articles) {
 		return articles.size();

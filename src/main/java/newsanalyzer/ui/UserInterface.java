@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+import download.SequentialDownloader;
 import newsanalyzer.ctrl.Controller;
 import newsapi.NewsApi;
 import newsapi.NewsApiBuilder;
@@ -13,6 +14,9 @@ import newsapi.enums.Category;
 import newsapi.enums.Country;
 import newsapi.enums.Endpoint;
 import newsapi.enums.Language;
+
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Processor;
 
 public class UserInterface 
 {
@@ -81,6 +85,12 @@ public class UserInterface
 
 		ctrl.process(newsApi);
 		
+	}
+
+	public void getDownloadLastSearch() {
+		SequentialDownloader sequentialDownloader = new SequentialDownloader();
+		sequentialDownloader.process(Controller.urlList);
+		System.out.println("Download last search");
 	}
 
 
