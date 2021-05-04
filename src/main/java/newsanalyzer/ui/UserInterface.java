@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+import download.ParallelDownloader;
 import download.SequentialDownloader;
 import newsanalyzer.ctrl.Controller;
 import newsapi.NewsApi;
@@ -90,6 +91,8 @@ public class UserInterface
 	public void getDownloadLastSearch() {
 		SequentialDownloader sequentialDownloader = new SequentialDownloader();
 		sequentialDownloader.process(Controller.urlList);
+		ParallelDownloader parallelDownloader = new ParallelDownloader();
+		parallelDownloader.process(Controller.urlList);
 		System.out.println("Download last search");
 	}
 
